@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -89,7 +89,7 @@ body {
 }
 
 .part4 {
-    max-width: 500px;
+    max-width: 600px;
     text-align: end;
     padding-top: 30px;
     padding-right: 5vw;
@@ -131,17 +131,20 @@ body {
 }
 
 .part4 p {
+    max-width: 500px;
     font-size: 12px;
     padding: 20px 0;
     text-align: justify;
 }
 
 .part4 h1 {
-    font-family: "Saira", sans-serif;
+    font-family: "Michroma", sans-serif;
     font-size: 50px;
     line-height: 60px;
+    width: 500px;
     word-spacing: 10px;
     color: #BDFFBF;
+    /* margin-right: 150px; */
 }
 
 .part4 button {
