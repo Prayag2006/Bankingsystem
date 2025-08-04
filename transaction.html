@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Nata Sans", sans-serif;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow-x: hidden;
+            font-family: "Nata Sans", sans-serif;
+            background-color: black;
+            color: white;
+            background: hsla(129, 93%, 5%, 1);
+
+            background: radial-gradient(circle, hsla(129, 93%, 5%, 1) 0%, hsla(0, 0%, 0%, 1) 100%);
+
+            background: -moz-radial-gradient(circle, hsla(129, 93%, 5%, 1) 0%, hsla(0, 0%, 0%, 1) 100%);
+
+            background: -webkit-radial-gradient(circle, hsla(129, 93%, 5%, 1) 0%, hsla(0, 0%, 0%, 1) 100%);
+
+            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#011B05", endColorstr="#000000", GradientType=1);
+        }
+
+        .header {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .nav {
+            /* background: hsla(0, 0%, 20%, 1);
+
+            background: radial-gradient(circle, hsla(0, 0%, 20%, 1) 0%, hsla(0, 0%, 8%, 1) 100%);
+
+            background: -moz-radial-gradient(circle, hsla(0, 0%, 20%, 1) 0%, hsla(0, 0%, 8%, 1) 100%);
+
+            background: -webkit-radial-gradient(circle, hsla(0, 0%, 20%, 1) 0%, hsla(0, 0%, 8%, 1) 100%);
+
+            filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#343434", endColorstr="#141414", GradientType=1); */
+            width: 100vw;
+            height: 10vh;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .part1 img {
+            width: 60px;
+            padding-top: 0px;
+        }
+
+        .card-container {
+            width: 450px;
+            height: 300px;
+            margin: 50px;
+            perspective: 1000px;
+        }
+
+        .card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: transform 1s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-side {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 16px;
+            backface-visibility: hidden;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #005b12, #0a0a0a);
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-front .top {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-front .middle {
+            font-size: 24px;
+            letter-spacing: 3px;
+            text-align: center;
+        }
+
+        .card-front .bottom {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #222, #111);
+            transform: rotateY(180deg);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pin-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pin-area input {
+            padding: 8px;
+            font-size: 18px;
+            border-radius: 6px;
+            border: none;
+            outline: none;
+            margin-bottom: 10px;
+            text-align: center;
+            width: 100px;
+        }
+
+        .pin-area button {
+            padding: 8px 16px;
+            background-color: #00c3ff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .secure-content {
+            display: none;
+            animation: fadeIn 1s ease-in-out forwards;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .balance-box {
+            background: linear-gradient(135deg, #1e1e1e, #2b2b2b);
+            color: #ffffff;
+            padding: 20px 30px;
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            width: 450px;
+            height: 150px;
+            margin: 50px;
+            text-align: center;
+            transition: transform 0.3s ease;
+
+        }
+
+        .balance-box:hover {
+            transform: scale(1.03);
+        }
+
+        .label {
+            font-size: 20px;
+            color: #aaa;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .amount {
+            font-size: 35px;
+            padding-top: 15px;
+            font-weight: bold;
+            color: #00ffc8;
+        }
+
+        .currency {
+            font-size: 18px;
+            color: #00bfa6;
+            margin-left: 4px;
+        }
+
+        .box {
+            background: linear-gradient(135deg, #1e1e1e, #2b2b2b);
+            padding: 20px 25px;
+            border-radius: 16px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            width: 550px;
+            height: 200px;
+            margin: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .box:hover {
+            transform: scale(1.02);
+        }
+
+        .toggle-options {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .toggle-options label {
+            cursor: pointer;
+            padding: 8px 14px;
+            border-radius: 10px;
+            background: #222;
+            color: #00ffc8;
+            transition: background 0.3s;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        input#deposit:checked~.form-container .deposit-form,
+        input#withdraw:checked~.form-container .withdraw-form {
+            display: block;
+        }
+
+        .form-container .deposit-form,
+        .form-container .withdraw-form {
+            display: none;
+        }
+
+        .form-container input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: none;
+            background: #222;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .form-container button {
+            padding: 10px 20px;
+            background: #00c3ff;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .form-container button:hover {
+            background: #009ac7;
+        }
+
+        /* Highlight selected option */
+        input#deposit:checked~.toggle-options label[for="deposit"],
+        input#withdraw:checked~.toggle-options label[for="withdraw"] {
+            background: #00ffc8;
+            color: #111;
+        }
+
+        .section1 {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 50px;
+        }
+
+        .transaction-box {
+            background: linear-gradient(135deg, #1e1e1e, #2b2b2b);
+            padding: 30px 25px;
+            border-radius: 20px;
+            width: 550px;
+            max-width: 700px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+            margin: 50px;
+        }
+
+        .transaction-box h2 {
+            text-align: center;
+            color: #00ffc8;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 14px 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #00c3ff;
+            color: #000;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #222;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #2a2a2a;
+        }
+
+        td.deposit {
+            color: #00ff99;
+        }
+
+        td.withdraw {
+            color: #ff5c5c;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #aaa;
+            padding: 20px;
+            font-size: 16px;
+        }
+
+        /* Scroll effect if too many entries */
+        .table-container {
+            max-height: 350px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #00c3ff #111;
+        }
+
+        .table-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .table-container::-webkit-scrollbar-thumb {
+            background: #00c3ff;
+            border-radius: 4px;
+        }
+
+        .close-btn {
+            background-color: #333;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            background-color: #ff5c5c;
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="nav">
+            <div class="part1">
+                <img src="Screenshot_2025-08-03_203138-removebg-preview.png" alt="" srcset="">
+            </div>
+            <div class="part2">
+                <button
+                    style="gap: 10px; background-color: black; border: 1px solid transparent; color: white; padding: 10px 20px; border-radius: 20px;"><i
+                        class="fa-solid fa-user fa-lg" style="color: #ffffff;"></i> PRAYAG KANSARA</button>
+            </div>
+            <div class="part3">
+                <button class="close-btn">
+                    <a href="index.html" style="color: #000;"><i class="fa-solid fa-xmark"></i></a>
+                </button>
+            </div>
+        </div>
+        <div class="section1">
+            <div class="part4" style="align-items: start;">
+                <div class="left-section">
+                    <div class="balance-box">
+                        <div class="label">Available Balance</div>
+                        <div class="amount">₹12,450.00<span class="currency">INR</span></div>
+                    </div>
+                </div>
+
+                <div class="card-container">
+                    <div class="card" id="flip-card">
+                        <!-- Front Side -->
+                        <div class="card-side card-front">
+                            <div class="top">
+                                <div>ATM CARD</div>
+                                <div>KANSARA</div>
+                            </div>
+                            <div class="middle">3782 8224 6310 005</div>
+                            <div class="bottom">
+                                <div>Prayag Kansara</div>
+                                <div>VISA</div>
+                            </div>
+                        </div>
+
+                        <!-- Back Side -->
+                        <div class="card-side card-back">
+                            <div id="pin-area" class="pin-area">
+                                <input type="password" id="pin-input" maxlength="4" placeholder="Enter PIN" />
+                                <button onclick="checkPIN()">Unlock</button>
+                            </div>
+                            <div id="secure-content" class="secure-content">
+                                <p><strong>✅ Access Granted!</strong></p>
+                                <p>Card valid until: 08/30</p>
+                                <p>CVV: 123</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="part5">
+                <div class="right-section">
+                    <div class="box">
+                        <input type="radio" name="action" id="deposit" checked>
+                        <input type="radio" name="action" id="withdraw">
+                        <div class="toggle-options">
+                            <label for="deposit">Deposit</label>
+                            <label for="withdraw">Withdraw</label>
+                        </div>
+                        <div class="form-container">
+                            <div class="deposit-form">
+                                <input type="number" placeholder="Enter deposit amount">
+                                <button id="deposit-btn">Deposit</button>
+                            </div>
+                            <div class="withdraw-form">
+                                <input type="number" placeholder="Enter withdrawal amount">
+                                <button id="withdraw-btn">Withdraw</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="transaction-box">
+                        <h2>Transaction History</h2>
+                        <div class="table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Date & Time</th>
+                                        <th>Type</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="transactionTableBody">
+                                    <!-- Transactions will be inserted here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
+
+</body>
+<script>
+    const card = document.getElementById("flip-card");
+    let isFlipped = false;
+
+    // Flip on click
+    card.addEventListener("click", () => {
+        if (!isFlipped) {
+            card.classList.add("flipped");
+            isFlipped = true;
+        }
+    });
+
+    function checkPIN() {
+        const pinInput = document.getElementById("pin-input").value;
+        const correctPIN = "1234";
+        if (pinInput === correctPIN) {
+            document.getElementById("pin-area").style.display = "none";
+            document.getElementById("secure-content").style.display = "block";
+        } else {
+            alert("❌ Incorrect PIN");
+        }
+    }
+
+    function formatCurrency(amount) {
+        return `₹${parseFloat(amount).toLocaleString("en-IN", { minimumFractionDigits: 2 })}`;
+    }
+
+    function getCurrentDateTime() {
+        const now = new Date();
+        return now.toLocaleString("en-GB", {
+            year: 'numeric', month: '2-digit', day: '2-digit',
+            hour: '2-digit', minute: '2-digit'
+        }).replace(",", "");
+    }
+
+    // Store old balance value
+    let oldBalance = parseFloat(document.querySelector(".amount").textContent.replace(/[^\d.-]/g, ""));
+
+    function updateBalance(change, type) {
+        const amountEl = document.querySelector(".amount");
+        const current = parseFloat(amountEl.textContent.replace(/[^\d.-]/g, ""));
+
+        // Store old balance before updating
+        oldBalance = current;
+
+        const newBalance = type === "deposit" ? current + change : current - change;
+
+        // Animate balance change
+        amountEl.innerHTML = `${formatCurrency(newBalance)}<span class="currency">INR</span>`;
+        amountEl.classList.add("updated");
+
+        // Add visual feedback for the change
+        const changeIndicator = document.createElement("span");
+        changeIndicator.className = `balance-change ${type}`;
+        changeIndicator.textContent = `${type === "deposit" ? '+' : '-'}${formatCurrency(change)}`;
+
+        amountEl.parentNode.appendChild(changeIndicator);
+
+        setTimeout(() => {
+            amountEl.classList.remove("updated");
+            changeIndicator.remove();
+        }, 1000);
+    }
+
+    function addTransactionRow(type, amount) {
+        const tbody = document.getElementById("transactionTableBody");
+        const row = document.createElement("tr");
+        row.innerHTML = `
+        <td>${getCurrentDateTime()}</td>
+        <td class="${type}">${type.charAt(0).toUpperCase() + type.slice(1)}</td>
+        <td class="${type}">${formatCurrency(amount)}</td>
+    `;
+        tbody.insertBefore(row, tbody.firstChild);
+    }
+
+    document.getElementById("deposit-btn").addEventListener("click", function () {
+        const input = this.previousElementSibling;
+        const amount = parseFloat(input.value);
+        if (!isNaN(amount) && amount > 0) {
+            updateBalance(amount, "deposit");
+            addTransactionRow("deposit", amount);
+            input.value = "";
+        } else {
+            alert("Please enter a valid amount.");
+        }
+    });
+
+    document.getElementById("withdraw-btn").addEventListener("click", function () {
+        const input = this.previousElementSibling;
+        const amount = parseFloat(input.value);
+        const balance = parseFloat(document.querySelector(".amount").textContent.replace(/[^\d.-]/g, ""));
+        if (!isNaN(amount) && amount > 0) {
+            if (amount > balance) {
+                alert("Insufficient funds.");
+                return;
+            }
+            updateBalance(amount, "withdraw");
+            addTransactionRow("withdraw", amount);
+            input.value = "";
+        } else {
+            alert("Please enter a valid amount.");
+        }
+    });
+
+    document.querySelector(".close-btn").addEventListener("click", function () {
+        if (confirm("Are you sure you want to exit?")) {
+            alert("You have been logged out");
+        }
+    });
+</script>
+
+
+</html>

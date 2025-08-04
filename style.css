@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    font-family: "Nata Sans", sans-serif;
+    background-color: black;
+    color: white;
+}
+
+.header {
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5vw;
+    flex-wrap: wrap;
+}
+
+.part1 img {
+    width: 60px;
+}
+
+.part2 ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 10px;
+}
+
+.part2 li {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.part2 li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px; /* Distance from text */
+    width: 0%;
+    height: 2px;
+    background-color: greenyellow;
+    transition: width 0.4s ease;
+    margin-left: 25px;
+
+}
+
+.part2 li:hover::after {
+    margin-left: 25px;
+    width: 100px;
+}
+
+
+.part3 {
+    cursor: pointer;
+}
+
+.section1,
+.section2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px 0vw;
+}
+
+.section1 {
+    padding-bottom: 60px;
+}
+
+.part3 img {
+    width: 800px;
+    max-width: 600px;
+    height: auto;
+}
+
+.part4 {
+    max-width: 500px;
+    text-align: end;
+    padding-top: 30px;
+    padding-right: 5vw;
+}
+
+@keyframes coinBounceRotate {
+    0% {
+        transform: translateY(0) rotateY(0deg);
+    }
+    25% {
+        transform: translateY(-15px) rotateY(90deg);
+    }
+    50% {
+        transform: translateY(0px) rotateY(180deg);
+    }
+    75% {
+        transform: translateY(-15px) rotateY(270deg);
+    }
+    100% {
+        transform: translateY(0) rotateY(360deg);
+    }
+}
+
+.part4 img {
+    padding-top: 50px;
+    width: 60px;
+    padding-bottom: 20px;
+    animation: coinBounceRotate 2s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+
+/* .part4 img {
+    
+} */
+
+.part4 h4 {
+    margin-bottom: 10px;
+}
+
+.part4 p {
+    font-size: 12px;
+    padding: 20px 0;
+    text-align: justify;
+}
+
+.part4 h1 {
+    font-family: "Saira", sans-serif;
+    font-size: 50px;
+    line-height: 60px;
+    word-spacing: 10px;
+    color: #BDFFBF;
+}
+
+.part4 button {
+    background-color: blue;
+    color: aliceblue;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 15px;
+    margin-top: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.section2 {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding: 30px 5vw;
+}
+
+.part5 img {
+    width: 100%;
+    max-width: 500px;
+
+}
+
+.part6 {
+    max-width: 500px;
+    padding-top: 30px;
+    font-size: 12px;
+    text-align: justify;
+}
+
+.part6 button {
+    border: 1px solid greenyellow;
+    color: greenyellow;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: transparent;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.part6 h1 {
+    color: greenyellow;
+    font-weight: 200;
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav,
+    .section1,
+    .section2 {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .part2 ul {
+        justify-content: center;
+        padding: 10px 0;
+    }
+
+    .part2 li {
+        padding: 10px;
+    }
+
+    .part4 h1 {
+        font-size: 35px;
+        line-height: 45px;
+        word-spacing: 5px;
+    }
+
+    .part4,
+    .part6 {
+        text-align: center;
+    }
+
+    .part4 button {
+        margin-right: 0;
+    }
+}
